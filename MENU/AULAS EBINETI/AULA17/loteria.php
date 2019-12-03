@@ -27,15 +27,14 @@ and open the template in the editor.
             $minimo = $_POST["minimo"];
             $maximo = $_POST["maximo"];
             $Vsoteado = $_POST["Vsorteado"];
-
             for ($i = 1; $i <= $Vsoteado; $i++) {
                 $num = rand($minimo, $maximo);
                 echo "O valores sorteados são nº $i é: $num <br><br>";
             }
         }
         ?>
-        
-         <br><br><form method="POST">
+
+        <br><br><form method="POST">
             <label>Digite o valor minino</label>
             <input name="minimo" type="number">
             <label>Digite o valor maximo</label>
