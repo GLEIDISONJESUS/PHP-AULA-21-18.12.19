@@ -1,5 +1,11 @@
 <?php
-$method = $_SERVER["REQUEST_METHOD"];
+
+session_start();
+$login = $_SESSION["login"];
+
+if($login == false){
+    echo"email/senha invalidos";
+}
 
 
 ?>

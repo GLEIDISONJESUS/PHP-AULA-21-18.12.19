@@ -27,6 +27,8 @@ foreach ($lista_usuarios as $u) {
 if ($sucesso == true) {
     header("location: ../HTML/homeUsuario.html");
 } else {
-    
-      echo "<h1>email/senha invalidos.</h1>"; 
+    session_start();
+    $_SESSION["login"] = false;
+    header("location: Usuario.php");
+     
 }

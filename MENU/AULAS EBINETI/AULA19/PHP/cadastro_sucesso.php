@@ -6,9 +6,15 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Cadastro feito com sucesso</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <h1>Cadastro feito com sucesso</h1>
        
+            <a href="../HTML/index.html">
+            <button>Voltar para a pagina inicial</button>
+        </a>
+    </body>
+</html>
