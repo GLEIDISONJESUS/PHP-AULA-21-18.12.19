@@ -1,7 +1,7 @@
 <?php
 
 include("variaveis.php");
-include("../MENU/header.html");
+include("../CabecalhoERodape/header.html");
 
 ?>
 
@@ -14,5 +14,5 @@ include("../MENU/header.html");
     <?php echo $paragrafo; ?>
 </p>
 
-<?php include("../MENU/footer.html"); 
+<?php include("../CabecalhoERodape/footer.html"); 
 

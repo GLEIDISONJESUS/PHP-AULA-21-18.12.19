@@ -1,10 +1,7 @@
-<?php
-$method = $_SERVER["REQUEST_METHOD"];
-
+<?php 
 session_start();
-
-if (isset($_SESSION["lista"]) == false) {
-    $_SESSION["lista"] = array();
+if ( isset($_SESSION["lista"]) == false ) {
+	$_SESSION["lista"] = array();
 }
 $lista = $_SESSION["lista"];
 ?>

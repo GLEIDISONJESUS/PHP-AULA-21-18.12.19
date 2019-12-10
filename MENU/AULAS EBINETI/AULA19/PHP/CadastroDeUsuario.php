@@ -1,73 +1,52 @@
 <?php
+session_start();
+if (isset($_SESSION["$uPerfil"]) == false) {
+    header("Location: usuarios.php");
+    exit();
+}
+$uPerfil = $_SESSION["uPerfil"];
 $method = $_SERVER["REQUEST_METHOD"];
-
-
-
 if ($method == "POST") {
-    //EU QUERO FAZER UM NOVO CADASTRO PARA ESSE USUARIO
-    session_start();
-    if (isset($_SESSION["Dlista"]) == false) {
-        $_SESSION["Dlista"] = array();
-    }
-
-    $Dlista = $_SESSION["Dlista"];
-
+    $emailAntigo = $uPerfil["email"];
     $email = $_POST["email"];
     $senha = $_POST["senha"];
+    $lista = $_SESSION["lista"];
+    for ($i = 0; $i < count($lista); $i++) {
 
-
-    $usuario = array();
-    $usuario["email"] = $email;
-    $usuario["senha"] = $senha;
-
-    $emailCadastrado = false;
-    foreach ($lista as $u) {
-        if ($u["email"] == $usuario["email"]) {
-            $emailCadastrado = true;
+        if ($lista[$i]["email"] == $emailAntigo) {
+            $lista[$i]["email"] = $email;
+            $lista[$i]["senha"] = $senha;
+            $uPerfil["email"] = $email;
+            $uPerfil["senha"] = $senha;
             break;
         }
     }
-    if ($emailCadastrado == false) {
-        $Dlista[] = $usuario;
-        $_SESSION["Dlista"] = $Dlista;
-        header("location: cadastro_sucesso.php");
-        exit();
-    }
+
+    $_SESSION["lista"] = $lista;
+    $_SESSION["uPerfil"] = $uPerfil;
 }
 ?>
-
-
-
 <!DOCTYPE html>
-
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title></title>
+        <meta charset="ISO-8859-1">
+        <title>Perfil | Usuários</title>
     </head>
     <body>
+        <a href="procurar.php">Voltar</a>
+        <h1>Perfil</h1>
+
         <form method="POST">
-            <h1>App Usuarios</h1>
-            <label>Email:</label>
-            <input type ="email" name="email">
-            <label>Senha:</label>
-            <input type="password" name="senha">
-            <input name="enviar" type="submit">
-
-            <?php  if (isset($emailCadastrado) and $emailCadastrado == true){ ?>
-            
-           
-            <?php }?>
-            <p>Email já cadastrado. Tente novamente.
+            <p>
+                <label>E-mail: </label> <input type="email" name="email"
+                                               value="<?php echo $uPerfil["email"]; ?>" />
             </p>
-          
+            <p>
+                <label>Senha: </label> <input type="password" name="senha"
+                                              value="<?php echo $uPerfil["senha"]; ?>" />
+            </p>
+            <input type="submit" value="Salvar" />
         </form>
-
-        <p>
-            <a href="../HTML/index.html">Voltar</a>
-
-        </p>
-
 
     </body>
 </html>

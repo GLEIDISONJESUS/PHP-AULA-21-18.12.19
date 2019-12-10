@@ -1,63 +1,52 @@
 <?php
-
 session_start();
-
-if(isset($_SESSION["uPerfil"])== false){
-    header("location: usuario.php");
+if (isset($_SESSION["uPerfil"]) == false) {
+    header("Location: Usuario.php");
     exit();
 }
-$method = $_POST["REQUEST_METHOD"];
-
-if($method == "POST"){
-    
+$uPerfil = $_SESSION["uPerfil"];
+$method = $_SERVER["REQUEST_METHOD"];
+if ($method == "POST") {
     $emailAntigo = $uPerfil["email"];
     $email = $_POST["email"];
     $senha = $_POST["senha"];
 
     $lista = $_SESSION["lista"];
-    
-    for($i = 0; i < count($lista); $i++){
-        
-    if($lista[$i]["email"] == $emailAntigo){
-            $u["email"] = $email;
-            $u["senha"] = $senha;
-            $uPerfil["email"] = $email;
-            $uPerfil["senha"] = $senha;
-            break;
+    // Lógica para atualizar os dados
+    for ($i = 0; $i < count($lista); $i++) {
+        foreach ($lista as $i => $u) {
+
+            if ($lista[$i]["email"] == $emailAntigo) {
+                $lista[$i]["email"] = $email;
+            }
         }
+
+        $_SESSION["lista"] = $lista;
+        $_SESSION["uPerfil"] = $uPerfil;
     }
-    
-    $_SESSION["lista"]= $lista;
-    $_SESSION["$uPerfil"] = $uPerfil;
 }
-
-    
-
-
-
-
-
 ?>
-
-
-
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title></title>
+        <meta charset="ISO-8859-1">
+        <title>Perfil | Usuários</title>
     </head>
     <body>
+        <a href="ProcurarUsuario.php">Voltar</a>
         <h1>Perfil</h1>
-        
-        <label>Senha:</label>
-        <input type ="password" name="senha">
-        <input type ="submit">
-        <a href="ProcurarUsuario.php">Voltr</a>
+
+        <form method="POST">
+            <p>
+                <label>E-mail: </label> <input type="email" name="email"
+                                               value="<?php echo $uPerfil["email"]; ?>" />
+            </p>
+            <p>
+                <label>Senha: </label> <input type="password" name="senha"
+                                              value="<?php echo $uPerfil["senha"]; ?>" />
+            </p>
+            <input type="submit" value="Salvar" />
+        </form>
+
     </body>
 </html>
