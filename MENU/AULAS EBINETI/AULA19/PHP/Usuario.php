@@ -1,6 +1,10 @@
 <?php
 session_start();
-$login = $_SESSION["login"];
+
+if(isset($_SESSION["login"]) == true){
+    $login = $_SESSION["login"];
+}
+
 
 ?>
 
@@ -24,8 +28,10 @@ $login = $_SESSION["login"];
 		<input type="password" name="senha" />
 	</p>
 	<input type="submit" value="Entrar" />
+        
+        
 
-	<?php if ($login == false) {?>
+	<?php if (isset($login) and $login == false) {?>
 	<p>* Email/senha inválidos.</p>
 	<?php } ?>
 
