@@ -3,6 +3,8 @@
   $link = mysqli_connect("localhost", "root", "");
 
 $resultado = mysqli_query($link, "SELECT * FROM cadastro_usuarios2.usuario") ; 
+
+$usuarios = mysqli_affected_all($resultado, MSQLI_ASSOC);
     
     
     
@@ -33,7 +35,17 @@ and open the template in the editor.
                     <td>SENHA</td>
                 </tr>
             </thead>
-            
+            <tbody>
+                <?php foreach($usuarios as $u){?>
+                <tr>
+                    <td><?php echo $u["ID"];?></td>
+              <td><?php echo $u["EMAIL"];?></td>  
+               <td><?php echo $u["SENHA"];?></td>
+                    
+                </tr>
+                <?php } ?>
+               
+            </tbody>
             
             
         </table>
