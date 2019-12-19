@@ -1,3 +1,27 @@
+<?php
+
+
+
+$usuario["idUsuario"] = 1;
+$usuario["email"] = "teste55@gmail.com";
+$usuario["nome"] = "teste";
+
+
+var_dump($usuario);
+
+echo "<br><br>";
+
+
+
+$usuario = new Usuario;
+var_dump($usuario);
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -6,20 +30,16 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>AULA 20</title>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <p>
-      
-            <a href="../PHP/usuarios.php">App Cadastro de Usuários</a>
-        </p>
-        <p>
+             <a href="../../../../index.html">home</a>
             
-            <a href="../../../../index.html">HOME</a>
-           
         </p>
-        
-           </body>
+       
+       
+    </body>
 </html>
